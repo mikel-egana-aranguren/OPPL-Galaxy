@@ -1,0 +1,82 @@
+﻿<tool id="query" name="Perform an OWL query against an ontology" version="1.0.1">
+	<description>It performs a query, expressed in Manchester OWL Syntax, against an OWL ontology</description>
+
+	<!-- DEFAULT SETTINGS -->
+	
+	<!-- For big ontologies I use -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 If that's too much for your machine simply delete or modify at will, but since Galaxy is usually used in a server setting it makes sense to use a big chunk of memory -->
+
+	<command>
+		java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/query.jar $ontology $reasoner $answer_type $answer_format "$query" > $output 
+	</command>
+	
+	<!-- FACT++ -->
+	
+	<!-- If you are planning to use FaCT++ you have to uncomment bellow (And comment the default settings above) and replace the -Djava.library.path with the appropiate JNI library path for your platform:FaCT++-linux-v1.5.2/64bit, FaCT++-linux-v1.5.2/32bit, FaCT++-OSX-v1.5.2/64bit, ...... -->
+	<!-- Using this setting doesn't upset the rest of the reasoners so you may as well leave it on if you plan to switch between FaCT++, Pellet and HermiT -->
+	
+	<!--<command>
+		java -Djava.library.path=${__tool_data_path__}/shared/jars/FaCT++-linux-v1.5.2/64bit -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/query.jar $ontology $reasoner $answer_type $answer_format "$query" > $output 
+	</command>-->
+	
+
+	<inputs>
+		<param name="ontology" type="data" label="Input ontology file"/>
+		<param name="query" type="text" size="100" value="" label="Query" />
+		<param name="reasoner" type="select" label="Choose reasoner">
+			<option value="Pellet" selected="true">Pellet</option>
+			<option value="HermiT">HermiT</option>
+			<option value="FaCTPlusPlus">FaCT++</option>
+			<option value="Elk">Elk (Not all axioms supported)</option>
+		</param>
+		<param name="answer_type" type="select" label="Choose answer type">
+			<option value="Descendants">Descendant classes</option>
+			<option value="DirectSubClasses" selected="true">Direct sub-classes</option>
+			<option value="Ancestors">Ancestor classes</option>
+			<option value="DirectSuperClasses">Direct super-classes</option>
+			<option value="EquivalentClasses">Equivalent classes</option>
+			<option value="Individuals">Individuals</option>
+		</param>
+		<param name="answer_format" type="select" label="Choose how to render the retrieved entities">
+			<option value="URI" selected="true">URI</option>
+			<option value="URIfragment">URI fragment</option>
+			<option value="URIfragment2OBO">OBO type URI fragment (e.g. GO_0000022 to GO:0000022)</option>
+		</param>
+	</inputs>
+	<outputs>
+		<data type="data" format="text" name="output" />
+	</outputs>
+	<!--<tests>
+		<test>
+			<param name="input" value="OWLQueryGalaxyTest.owl"/>
+			<param name="query" value="p some d"/>
+			<param name="reasoner" value="Pellet"/>
+			<param name="answer_type" value="DirectSubClasses"/>
+			<param name="answer_format" value="URIfragment"/>
+			<output name="out_file" file="query_result"/>	
+		</test>
+	</tests>-->
+	<help>
+
+**About Query-Galaxy**
+
+  Query-Galaxy can be used to execute a DL query against an OWL ontology. The result is a list of entities from the target ontology. 
+
+**Usage**
+ 
+  An ontology is needed as input: load it with Get Data >> Upload File from your computer or redirect the output of another galaxy tool. Query-Galaxy uses the OWL API, and therefore it can load any ontology format that such API is able to load: OBO flat file, OWL (RDF/XML, OWL/XML, Functional, Manchester), turtle, and KRSS. In case the loaded ontology includes OWL imports, Query-Galaxy will try to resolve them.
+  
+  A DL query must be provided, e.g. GO_0007049 or part_of some GO_0007049.
+  
+  The reasoner can be Pellet, HermiT, FaCT++ or Elk.  
+  
+  How the retrieved entities relate to the query can be chosen: a DL query is just an anonymous OWL Class, and the retrieved entities can be descendant classes, direct sub-classes, ancestor classes, direct super-classes, equivalent classes, or member individuals.
+   
+  The returned entities can be rendered using their URI, their URI fragment, or OBO type URI fragment (e.g. GO_0000022 to GO:0000022).
+
+**Contact**
+
+  Please send any request or comment to mikel.egana.aranguren@gmail.com.
+
+	</help>
+
+</tool>

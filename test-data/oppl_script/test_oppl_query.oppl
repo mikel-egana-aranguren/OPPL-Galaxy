@@ -1,0 +1,4 @@
+?whole:CLASS,
+?part:CLASS
+SELECT
+?part SubClassOf part_of some ?whole WHERE ?part != Nothing

@@ -1,0 +1,57 @@
+<tool id="inference" name="Perform inference in an OWL ontology" version="1.0.1">
+	<description>It performs inference in an OWL ontology and it generates a new ontology with the inferred axioms as asserted axioms</description>
+	
+	<!-- For big ontologies I use -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 If that's too much for your machine simply delete or modify at will, but since Galaxy is usually used in a server setting it makes sense to use a big chunk of memory -->
+
+	<command>
+		java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/inference.jar $input $reasoner $axioms > $output
+	</command>
+	
+	<inputs>
+		<param name="input" type="data" label="Input ontology file"/>
+		<param name="reasoner" type="select" label="Choose reasoner">
+			<option value="Pellet" selected="true">Pellet</option>
+			<option value="HermiT">HermiT</option>
+			<option value="FaCTPlusPlus">FaCT++</option>
+			<option value="Elk">Elk (Not all axioms supported)</option>
+		</param>
+		<param name="axioms" type="select" display="checkboxes" multiple="true" label="Select what axioms to add as asserted">
+		  <option value="CLASS_ASSERTIONS">CLASS_ASSERTIONS</option>
+		  <option value="CLASS_HIERARCHY">CLASS_HIERARCHY</option>
+		  <option value="DATA_PROPERTY_HIERARCHY">DATA_PROPERTY_HIERARCHY</option>
+		  <option value="DISJOINT_CLASSES">DISJOINT_CLASSES</option>
+		  <option value="OBJECT_PROPERTY_HIERARCHY">OBJECT_PROPERTY_HIERARCHY</option>
+		</param>
+	</inputs>
+	<outputs>
+		<data format="text" name="output" />
+	</outputs>
+	<!--<tests>
+		<test>
+			<param name="input" value="test.owl"/>
+			<param name="reasoner" value="Pellet"/>
+			<param name="axioms" value="CLASS_ASSERTIONS,CLASS_HIERARCHY,OBJECT_PROPERTY_HIERARCHY"/>
+			<output name="out_file" file="test_new.owl"/>	
+		</test>
+	</tests>-->
+	<help>
+
+**About Inference-Galaxy**
+
+  Inference-Galaxy offers the possibility of performing automated reasoning in an ontology and then injecting the inferred axioms as asserted axioms, generating a new OWL ontology.
+
+**Usage**
+ 
+  An ontology is needed as input: load it with Get Data >> Upload File from your computer or redirect the output of another galaxy tool. Inference-Galaxy uses the OWL API, and therefore it can load any ontology format that such API is able to load: OBO flat file, OWL (RDF/XML, OWL/XML, Functional, Manchester), turtle, and KRSS. In case the loaded ontology includes OWL imports, Inference-Galaxy will try to resolve them.
+  
+  The reasoner can be Pellet, HermiT, FaCT++ or Elk.  
+   
+  The inferred axioms to add as asserted axioms can be chosen.
+   
+**Contact**
+
+  Please send any request or comment to mikel.egana.aranguren@gmail.com.
+
+	</help>
+
+</tool>

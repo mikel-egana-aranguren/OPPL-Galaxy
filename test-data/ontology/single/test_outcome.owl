@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#"
+     xml:base="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:Ontology13147150361882="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#"
+     xmlns:Ontology1314715036188="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#participates_in -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#participates_in"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#transitive_prop -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#transitive_prop">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/part_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/part_of"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/prop -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/prop"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#Ind_test_OPPL_query -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#Ind_test_OPPL_query"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#agent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#agent">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/OPPL_test"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#participates_in"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#process"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#participates_in"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/OPPL_test"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#participates_in"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#process"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#process -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#process">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/OPPL_test"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/OPPL_test -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/OPPL_test"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/Taxonomy_test -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/Taxonomy_test"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/child_class -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/child_class">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/Taxonomy_test"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/prop"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/filler"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/filler -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/filler">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/Taxonomy_test"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/parent_class -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/parent_class">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/prop"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/filler"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/Taxonomy_test"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/part -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/part">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/OPPL_test"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/part_of"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/whole"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/whole -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/whole">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl/OPPL_test"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#A -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#A">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#Ind_test_OPPL_query"/>
+        <Ontology1314715036188:prop rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#B"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#B -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#B">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl#Ind_test_OPPL_query"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.4.1806) http://owlapi.sourceforge.net -->
+

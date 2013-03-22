@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY inference_test "http://www.oeg-upm.net/inference_test.owl/" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY biopax-level3 "http://www.biopax.org/release/biopax-level3.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.oeg-upm.net/inference_test.owl#"
+     xml:base="http://www.oeg-upm.net/inference_test.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:biopax-level3="http://www.biopax.org/release/biopax-level3.owl#"
+     xmlns:inference_test="http://www.oeg-upm.net/inference_test.owl/">
+    <owl:Ontology rdf:about="http://www.oeg-upm.net/inference_test.owl">
+        <owl:imports rdf:resource="http://www.biopax.org/release/biopax-level3.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.oeg-upm.net/inference_test.owl/p -->
+
+    <owl:ObjectProperty rdf:about="&inference_test;p"/>
+    
+
+
+    <!-- http://www.oeg-upm.net/inference_test.owl/part_of -->
+
+    <owl:ObjectProperty rdf:about="&inference_test;part_of"/>
+    
+
+
+    <!-- http://www.oeg-upm.net/inference_test.owl/q -->
+
+    <owl:ObjectProperty rdf:about="&inference_test;q"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.oeg-upm.net/inference_test.owl/a -->
+
+    <owl:Class rdf:about="&inference_test;a">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&inference_test;p"/>
+                <owl:someValuesFrom rdf:resource="&inference_test;b"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oeg-upm.net/inference_test.owl/b -->
+
+    <owl:Class rdf:about="&inference_test;b"/>
+    
+
+
+    <!-- http://www.oeg-upm.net/inference_test.owl/c -->
+
+    <owl:Class rdf:about="&inference_test;c">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&inference_test;p"/>
+                <owl:someValuesFrom rdf:resource="&inference_test;b"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oeg-upm.net/inference_test.owl/d -->
+
+    <owl:Class rdf:about="&inference_test;d">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&inference_test;p"/>
+                <owl:someValuesFrom rdf:resource="&biopax-level3;Entity"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oeg-upm.net/inference_test.owl/e -->
+
+    <owl:Class rdf:about="&inference_test;e">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&inference_test;part_of"/>
+                <owl:someValuesFrom rdf:resource="&biopax-level3;Entity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&inference_test;p"/>
+                <owl:someValuesFrom rdf:resource="&biopax-level3;Entity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <rdf:Description rdf:about="&owl;Thing">
+        <rdfs:comment>Expected inferences: 
+
+aa memberOf a
+
+c subClassOf a
+
+(imports)
+
+d subClassOf e</rdfs:comment>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.oeg-upm.net/inference_test.owl/aa -->
+
+    <owl:Thing rdf:about="&inference_test;aa">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <inference_test:p rdf:resource="&inference_test;bb"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.oeg-upm.net/inference_test.owl/bb -->
+
+    <owl:NamedIndividual rdf:about="&inference_test;bb">
+        <rdf:type rdf:resource="&inference_test;b"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.oeg-upm.net/inference_test.owl/cc -->
+
+    <owl:Thing rdf:about="&inference_test;cc">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.2.1782) http://owlapi.sourceforge.net -->
+

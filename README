@@ -1,0 +1,162 @@
+INSTALLATION VIA MERCURIAL (RECOMMENDED)
+========================================
+
+1.- Stop Galaxy.
+
+2.- Move to galaxy-dist/tools/
+
+3.- Clone the OPPL-Galaxy repository with mercurial: 
+
+hg clone http://mikel-egana-aranguren@toolshed.g2.bx.psu.edu/repos/mikel-egana-aranguren/oppl
+
+4.- Move to galaxy-dist/tools/oppl/ and run install.sh: 
+
+chmod +x install.sh
+./install.sh
+
+5.- Add the following lines to /galaxy-dist/tool_conf.xml:
+
+  <section name="Ontology Pre Processor Language" id="oppl">
+    <tool file="oppl/oppl.xml"/>
+    <tool file="oppl/inference.xml"/>
+    <tool file="oppl/query.xml"/>
+    <tool file="oppl/oppl_query.xml"/>
+    <tool file="oppl/merge.xml"/>
+  </section>
+
+6.- Start Galaxy.
+
+For updates: 
+
+1.- Stop Galaxy.
+
+2.- Move to galaxy-dist/tools/oppl/
+
+3.- Pull changes and update working copy with mercurial: 
+
+hg pull
+hg update
+
+4.- Run install.sh: 
+
+./install.sh
+
+5.- Only edit galaxy-dist/tool_conf.xml in case a tool (an XML file) has been added/removed.
+
+6.- Start Galaxy.
+
+
+
+MANUAL INSTALLATION (DIRECT DOWNLOAD)
+=====================================
+
+Download and uncompress anywhere you like, and then:
+
+1.- Stop Galaxy.
+
+2.- Copy the following files and directories to
+galaxy-dist/tool-data/shared/jars/:
+
+oppl_galaxy_tool.jar
+inference.jar
+query.jar
+oppl_query.jar
+merge.jar
+oppl_galaxy_lib/
+inference_lib/
+query_lib/
+oppl_query_lib/
+merge_lib/
+FaCT++-linux-v1.5.2/ 
+FaCT++-OSX-v1.5.2/
+ 
+3.- Create directory galaxy-dist/tools/oppl/
+
+4.- Copy oppl.xml, inference.xml, query.xml, oppl_query.xml and 
+merge.xml to galaxy-dist/tools/oppl/
+
+5.- Add the following lines to galaxy-dist/tool_conf.xml:
+
+  <section name="Ontology Pre Processor Language" id="oppl">
+    <tool file="oppl/oppl.xml"/>
+    <tool file="oppl/inference.xml"/>
+    <tool file="oppl/query.xml"/>
+    <tool file="oppl/oppl_query.xml"/>
+    <tool file="oppl/merge.xml"/>
+  </section>
+
+6.- Start Galaxy.
+
+
+
+FORESEEN FEATURES
+=================
+
+- Support for processing ontologies that import other ontologies loaded
+in Galaxy (i.e. to resolve imports within galaxy).
+
+- Entities rendering definition (URI fragment, rdfs:label, QName, etc).
+
+- OWLLink and Racer support.
+
+- Standalone OPPL assertions parsing (e.g. ADD phagocyte subClassOf
+cell).
+
+- Other output formats apart from RDF/XML.
+
+- Support for DataPropertyAssertion, DataPropertyHierarchy,
+DifferentIndividuals, ...
+
+- A new tool for wrapping the ontology modularisation function of the OWL API.
+
+
+
+KNOWN BUGS AND ISSUES
+=====================
+
+Currently Galaxy interprets any information thrown to stderr as a tool
+error, which is bad since OPPL (And many other tools) throw info to 
+sdterr even if working properly. In OPPL Galaxy, stderr is redirected
+to /dev/null to avoid the problem, but that means that OPPL Galaxy does
+not fail gracefully (It simply stops). A wrapper will be implemented.
+
+http://wiki.g2.bx.psu.edu/Future/Job%20Failure%20When%20stderr
+
+
+
+CONTACT
+=======
+
+Please send any request or comment to mikel.egana.aranguren@gmail.com.
+
+
+
+ACKNOWLEDGEMENTS
+================
+
+This work is funded by the Marie Curie Cofund program of the EU, FP7.
+
+
+
+COPYRIGHT AND LICENSE
+=====================
+
+Copyright (c) 2011 Mikel Egaña Aranguren. 
+
+(OPPL|Inference|Query|OPPL-Query|Merge)-Galaxy 
+is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your
+option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+OPPL API, OWL API, Pellet, HermiT, Elk and FaCT++ have their own licenses.
+
+

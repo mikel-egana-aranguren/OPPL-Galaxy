@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY OWLQueryGalaxyTest2 "http://www.oeg-upm.net/OWLQueryGalaxyTest.owl#" >
+    <!ENTITY OWLQueryGalaxyTest "http://www.oeg-upm.net/OWLQueryGalaxyTest.owl/" >
+]>
+
+
+<rdf:RDF xmlns="http://www.oeg-upm.net/OWLQueryGalaxyTest.owl#"
+     xml:base="http://www.oeg-upm.net/OWLQueryGalaxyTest.owl"
+     xmlns:OWLQueryGalaxyTest2="http://www.oeg-upm.net/OWLQueryGalaxyTest.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:OWLQueryGalaxyTest="http://www.oeg-upm.net/OWLQueryGalaxyTest.owl/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.oeg-upm.net/OWLQueryGalaxyTest.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.oeg-upm.net/OWLQueryGalaxyTest.owl/inv_p -->
+
+    <owl:ObjectProperty rdf:about="&OWLQueryGalaxyTest;inv_p"/>
+    
+
+
+    <!-- http://www.oeg-upm.net/OWLQueryGalaxyTest.owl/p -->
+
+    <owl:ObjectProperty rdf:about="&OWLQueryGalaxyTest;p">
+        <owl:inverseOf rdf:resource="&OWLQueryGalaxyTest;inv_p"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.oeg-upm.net/OWLQueryGalaxyTest.owl#GO_0000034 -->
+
+    <owl:Class rdf:about="&OWLQueryGalaxyTest2;GO_0000034">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&OWLQueryGalaxyTest;p"/>
+                <owl:someValuesFrom rdf:resource="&OWLQueryGalaxyTest;d"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oeg-upm.net/OWLQueryGalaxyTest.owl/GO_0000033 -->
+
+    <owl:Class rdf:about="&OWLQueryGalaxyTest;GO_0000033">
+        <rdfs:subClassOf rdf:resource="&OWLQueryGalaxyTest2;GO_0000034"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oeg-upm.net/OWLQueryGalaxyTest.owl/a -->
+
+    <owl:Class rdf:about="&OWLQueryGalaxyTest;a">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&OWLQueryGalaxyTest;p"/>
+                <owl:someValuesFrom rdf:resource="&OWLQueryGalaxyTest;d"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oeg-upm.net/OWLQueryGalaxyTest.owl/c -->
+
+    <owl:Class rdf:about="&OWLQueryGalaxyTest;c">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&OWLQueryGalaxyTest;p"/>
+                <owl:allValuesFrom rdf:resource="&OWLQueryGalaxyTest;d"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oeg-upm.net/OWLQueryGalaxyTest.owl/d -->
+
+    <owl:Class rdf:about="&OWLQueryGalaxyTest;d">
+        <rdfs:subClassOf rdf:resource="&OWLQueryGalaxyTest;f"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oeg-upm.net/OWLQueryGalaxyTest.owl/f -->
+
+    <owl:Class rdf:about="&OWLQueryGalaxyTest;f"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <rdf:Description rdf:about="&owl;Thing">
+        <rdfs:comment>p some d: 
+
+equiv a 
+sub b
+desc b,b1, 
+ind aa
+
+inv_p some c
+
+ances d,f
+sup d</rdfs:comment>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.oeg-upm.net/OWLQueryGalaxyTest.owl/aa -->
+
+    <owl:Thing rdf:about="&OWLQueryGalaxyTest;aa">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <OWLQueryGalaxyTest:p rdf:resource="&OWLQueryGalaxyTest;dd"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.oeg-upm.net/OWLQueryGalaxyTest.owl/dd -->
+
+    <owl:NamedIndividual rdf:about="&OWLQueryGalaxyTest;dd">
+        <rdf:type rdf:resource="&OWLQueryGalaxyTest;d"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.2.1782) http://owlapi.sourceforge.net -->
+

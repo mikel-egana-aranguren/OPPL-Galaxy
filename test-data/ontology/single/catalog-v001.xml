@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=file:/home/mikel/UPM/OPPL_galaxy/OPPL/OPPL/test-data/ontology/single/, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1348069913931" name="http://www.oeg-upm.net/OWLQueryGalaxyTest.owl" uri="OWLQueryGalaxyTest.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1348069913931" name="http://www.oeg-upm.net/inference_test.owl" uri="inference_test.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1348069913931" name="http://www.samuelcroset.com/debug.owl" uri="elk.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1348069913931" name="http://www.semanticweb.org/ontologies/2011/7/Ontology1314715036188.owl" uri="test.owl"/>
+    </group>
+</catalog>

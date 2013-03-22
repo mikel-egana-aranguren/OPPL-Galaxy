@@ -1,0 +1,75 @@
+<tool id="oppl_query" name="Perform an OPPL query against an ontology" version="1.0.1">
+	<description>It performs a query, expressed in OPPL Syntax, against an OWL ontology</description>
+	
+	<!-- Galaxy is not happy with OPPL throwing info into stderr, and I have redirected stderr to /dev/null, which is a bad solution since OPPL galaxy does not inform properly when it fails -->
+	<!-- More info on the stderr issue: http://wiki.g2.bx.psu.edu/Future/Job%20Failure%20When%20stderr -->
+	<!-- Testing with wrapper.sh but no success so far -->
+
+	<!-- DEFAULT SETTINGS -->
+	
+	<!-- For big ontologies I use -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 If that's too much for your machine simply delete or modify at will, but since Galaxy is usually used in a server setting it makes sense to use a big chunk of memory -->
+
+	<command>
+		java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/oppl_query.jar $ontology $reasoner $answer_format $query > $output 2>/dev/null
+	</command>
+	
+	<!-- FACT++ -->
+	
+	<!-- If you are planning to use FaCT++ you have to uncomment bellow (And comment the default settings above) and replace the -Djava.library.path with the appropiate JNI library path for your platform:FaCT++-linux-v1.5.2/64bit, FaCT++-linux-v1.5.2/32bit, FaCT++-OSX-v1.5.2/64bit, ...... -->
+	<!-- Using this setting doesn't upset the rest of the reasoners so you may as well leave it on if you plan to switch between FaCT++, Pellet and HermiT -->
+	
+	<!--<command>
+		java -Djava.library.path=${__tool_data_path__}/shared/jars/FaCT++-linux-v1.5.2/64bit -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/oppl_query.jar $ontology $reasoner $answer_format $query > $output 2>/dev/null
+	</command>-->
+	
+
+	<inputs>
+		<param name="ontology" type="data" label="Input ontology file"/>
+		<param name="query" type="data" format="text" label="OPPL query file" />
+		<param name="reasoner" type="select" label="Choose reasoner">
+			<option value="Pellet" selected="true">Pellet</option>
+			<option value="HermiT">HermiT</option>
+			<option value="FaCTPlusPlus">FaCT++</option>
+			<option value="Elk">Elk (Not all axioms supported)</option>
+		</param>
+		<param name="answer_format" type="select" label="Choose how to render the retrieved entities">
+			<option value="URI" selected="true">URI</option>
+			<option value="URIfragment">URI fragment</option>
+			<option value="URIfragment2OBO">OBO type URI fragment (e.g. GO_0000022 to GO:0000022)</option>
+		</param>
+	</inputs>
+	<outputs>
+		<data type="data" format="text" name="output" />
+	</outputs>
+	<!--<tests>
+		<test>
+			<param name="input" value="test.owl"/>
+			<param name="query" value="?p:OBJECTPROPERTY SELECT Transitive ?p "/>
+			<param name="reasoner" value="Pellet"/>
+			<param name="answer_format" value="URIfragment"/>
+			<output name="out_file" file="query_result"/>	
+		</test>
+	</tests>-->
+	<help>
+
+**About OPPL-Query-Galaxy**
+
+  OPPL-Query-Galaxy can be used to execute an OPPL query against an OWL ontology. The result is a two column table with the entities that have been bound by the variables. 
+  
+**Usage**
+ 
+  An ontology is needed as input: load it with Get Data >> Upload File from your computer or redirect the output of another galaxy tool. OPPL-Query-Galaxy uses the OWL API, and therefore it can load any ontology format that such API is able to load: OBO flat file, OWL (RDF/XML, OWL/XML, Functional, Manchester), turtle, and KRSS. In case the loaded ontology includes OWL imports, OPPL-Query-Galaxy will try to resolve them.
+  
+  An OPPL query must be provided in a file: an OPPL query is an OPPL script without the actions part, e.g. ?whole:CLASS, ?part:CLASS SELECT ?part SubClassOf part_of some ?whole WHERE ?part != Nothing.
+  
+  The reasoner can be Pellet, HermiT, FaCT++ or Elk.  
+   
+  The returned entities can be rendered using their URI, their URI fragment, or OBO type URI fragment (e.g. GO_0000022 to GO:0000022).
+
+**Contact**
+
+  Please send any request or comment to mikel.egana.aranguren@gmail.com.
+
+	</help>
+
+</tool>

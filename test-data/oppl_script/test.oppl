@@ -1,0 +1,7 @@
+?agent:CLASS,
+?process:CLASS
+SELECT ?agent SubClassOf participates_in some ?process 
+WHERE ?agent != Nothing
+BEGIN
+ADD ?agent SubClassOf participates_in only ?process
+END;

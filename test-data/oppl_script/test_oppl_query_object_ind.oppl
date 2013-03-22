@@ -1,0 +1,4 @@
+?a:INDIVIDUAL,
+?part:CLASS,
+?c:INDIVIDUAL
+SELECT ?a prop ?c

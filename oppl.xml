@@ -1,0 +1,121 @@
+﻿<tool id="oppl" name="Execute an OPPL file against an ontology" version="1.0.8">
+	<description>It executes an OPPL script against the input ontology and generates a new ontology with the changes described in the OPPL script</description>
+
+	<!-- Galaxy is not happy with OPPL throwing info into stderr, and I have redirected stderr to /dev/null, which is a bad solution since OPPL galaxy does not inform properly when it fails -->
+	<!-- More info on the stderr issue: http://wiki.g2.bx.psu.edu/Future/Job%20Failure%20When%20stderr -->
+	<!-- Testing with wrapper.sh but no success so far -->
+	
+	
+	
+	<!-- DEFAULT SETTINGS -->
+	
+	<!-- For big ontologies I use -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 If that's too much for your machine simply delete or modify at will, but since Galaxy is usually used in a server setting it makes sense to use a big chunk of memory -->
+
+	<!--<command>
+	  java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/oppl_galaxy.jar $input $reasoner $OPPL $format > $output 2>/dev/null 
+	</command>-->
+	
+	<!-- FACT++ -->
+	
+	<!-- If you are planning to use FaCT++ you have to uncomment bellow (And comment the default settings above) and replace the -Djava.library.path with the appropiate JNI library path for your platform:FaCT++-linux-v1.5.2/64bit, FaCT++-linux-v1.5.2/32bit, FaCT++-OSX-v1.5.2/64bit, ...... -->
+	<!-- Using this setting doesn't upset the rest of the reasoners so you may as well leave it on if you plan to switch between FaCT++, Pellet and HermiT -->
+	
+	<command>
+		java -Djava.library.path=${__tool_data_path__}/shared/jars/FaCT++-linux-v1.5.2/64bit -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/oppl_galaxy.jar $input $reasoner $OPPL $format > $output 2>/dev/null
+	</command>
+
+	
+	
+	
+	<!-- DEBUGGING -->
+	
+	<!-- For debugging simply remove 2>/dev/null Or uncomment bellow (And comment the default settings above). It will fail always (Due to OPPL messages) but at least it will be informative -->
+
+	<!--<command>
+		java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/oppl_galaxy.jar $input $reasoner $OPPL $format > $output
+	</command>-->
+	
+	
+	
+
+	<inputs>
+		<param name="input" type="data" label="Input ontology file"/>
+		<param format="text" name="OPPL" type="data" label="OPPL file"/>
+		<param name="reasoner" type="select" label="Choose reasoner">
+			<option value="Pellet" selected="true">Pellet</option>
+			<option value="HermiT">HermiT</option>
+			<option value="FaCTPlusPlus">FaCT++</option>
+			<option value="Elk">Elk (Not all axioms supported)</option>
+		</param>
+		<param name="format" type="select" label="Choose ontology output format">
+			<option value="OWL" selected="true">OWL</option>
+			<option value="OBO">OBO</option>
+		</param>
+	</inputs>
+	<outputs>
+		<data format="text" name="output" />
+	</outputs>
+	<!--<tests>
+		<test>
+			<param name="input" value="test.owl"/>
+			<param name="OPPL" value="test.oppl"/>
+			<param name="format" value="OWL"/>
+			<param name="reasoner" value="Pellet"/>
+			<output name="out_file" file="test_new.owl"/>	
+		</test>
+	</tests>-->
+	<help>
+
+**About OPPL-Galaxy**
+
+  OPPL-Galaxy can be used to execute an OPPL script against an ontology, generating a new ontology. OPPL (Ontology Pre Processor Language) is a high level scripting language, based in the Manchester OWL Syntax, to automate the manipulation of an ontology. An OPPL script (See test.oppl) defines a query to be performed against the ontology, and some actions (Adding or removing axioms) that affect the entities that will be retrieved. Those entities can be named or defined by a variable. OPPL is a powerful method for defining and executing modelling patterns that are repeated in an ontology, saving time and energy.  
+
+**Usage**
+
+  An ontology and an OPPL file are needed (test.owl and test.oppl can be used as samples, both available in the bundle). Load both with Get Data >> Upload File from your computer, or redirect from another Galaxy tool. OPPL-Galaxy uses the OWL API, and therefore it can load any ontology format that such API is able to load: OBO flat file, OWL (RDF/XML, OWL/XML, Functional, Manchester), turtle, and KRSS. In case the loaded ontology includes OWL imports, OPPL-Galaxy will try to resolve them.
+  
+  The reasoner can be Pellet, HermiT, FaCT++ or Elk.
+
+  The output ontology can be OBO or OWL (RDF/XML). 
+
+**More information**
+
+  Galaxy public instance with OPPL-Galaxy pre-installed:
+  
+  http://biordf.org:8090/
+  
+  OPPL-Galaxy Examples: 
+  
+  http://biordf.org/OPPL-Galaxy/
+  
+  OPPL examples:
+  
+  http://oppl2.sourceforge.net/taggedexamples/
+  
+  Links of interest:
+
+  http://oppl.sf.net/
+
+  http://www.w3.org/TR/owl2-manchester-syntax/
+
+  http://clarkparsia.com/pellet
+
+  http://hermit-reasoner.com/
+  
+  http://code.google.com/p/factplusplus/
+  
+  http://code.google.com/p/elk-reasoner/
+  
+  http://owlapi.sourceforge.net/
+  
+**Citation**
+
+  Mikel Egaña Aranguren, Jesualdo Tomás Fernández-Breis, Erick Antezana. OPPL-Galaxy: Enhancing ontology exploitation in Galaxy with OPPL. In Proceedings of the 4th International Workshop on Semantic Web Applications and Tools for the Life Sciences, SWAT4LS 2011, pages 12–19, ACM 2012.
+
+**Contact**
+
+  Please send any request or comment to mikel.egana.aranguren@gmail.com.
+
+	</help>
+
+</tool>

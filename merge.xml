@@ -1,0 +1,44 @@
+﻿<tool id="merge" name="Merge the imported ontologies" version="1.0.1">
+	<description>If an ontology with import axioms is provided, it will merge the imported ontologies into the main ontology</description>
+
+	<!-- DEFAULT SETTINGS -->
+	
+	<!-- For big ontologies I use -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 If that's too much for your machine simply delete or modify at will, but since Galaxy is usually used in a server setting it makes sense to use a big chunk of memory -->
+
+	<command>
+		java -Xmx3000M -Xms250M -DentityExpansionLimit=1000000000 -jar ${__tool_data_path__}/shared/jars/merge.jar $ontology "$uri" > $output 
+	</command>
+	
+	<inputs>
+		<param name="ontology" type="data" label="Input ontology file"/>
+		<param name="uri" type="text" size="100" value="" label="IRI for the new ontology" />
+	</inputs>
+	<outputs>
+		<data type="data" format="text" name="output" />
+	</outputs>
+	<!--<tests>
+		<test>
+			<param name="ontology" value="merge_test.owl"/>
+			<param name="uri" value="http://cbgp.upm.es/BiologicalInformatics/OPPLGalaxy/merged.owl"/>
+			<output name="out_file" file="merge.owl"/>	
+		</test>
+	</tests>-->
+	<help>
+
+**About Merge-Galaxy**
+
+  Merge-Galaxy can be used to merge any (resolvable) imported ontologies into the main ontology, creating a new ontology.
+
+**Usage**
+ 
+  An ontology is needed as input: load it with Get Data >> Upload File from your computer or redirect the output of another galaxy tool. Merge-Galaxy uses the OWL API, and therefore it can load any ontology format that such API is able to load: OBO flat file, OWL (RDF/XML, OWL/XML, Functional, Manchester), turtle, and KRSS. 
+  
+  An URI can be specified for the new merged ontology. In case non is specified, the following URI will be used: http://cbgp.upm.es/BiologicalInformatics/OPPLGalaxy/merged.owl.
+
+**Contact**
+
+  Please send any request or comment to mikel.egana.aranguren@gmail.com.
+
+	</help>
+
+</tool>

@@ -1,0 +1,7 @@
+?whole:CLASS,
+?part:CLASS
+SELECT
+?part SubClassOf part_of some ?whole WHERE ?part != Nothing
+BEGIN
+ADD ?part SubClassOf part_of only ?whole
+END;
